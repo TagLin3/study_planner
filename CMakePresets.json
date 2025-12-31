@@ -7,10 +7,12 @@
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "installDir": "${sourceDir}/out/install/${presetName}",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe"
-            },
+          "cacheVariables": {
+            "Qt6_DIR": "C:/Qt/6.10.1/mingw_64/lib/cmake/Qt6",
+            "nlohmann_json_DIR": "C:/cpp_json/out/build/x64-Debug",
+            "CMAKE_C_COMPILER": "gcc",
+            "CMAKE_CXX_COMPILER": "g++"
+          },
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",

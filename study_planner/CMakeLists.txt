@@ -1,7 +1,4 @@
-﻿set(CMAKE_PREFIX_PATH "C:\\Qt\\6.9.2\\msvc2022_64\\lib\\cmake")
-set(nlohmann_json_DIR "C:\\cpp_json\\out\\build\\x64-Debug")
-
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+﻿find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(nlohmann_json 3.12.0 REQUIRED)
 
 set(CMAKE_AUTOMOC ON)
