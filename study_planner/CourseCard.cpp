@@ -36,9 +36,9 @@ CourseCard::CourseCard(std::shared_ptr<CoursePlan> coursePlan,
   deleteButton->setStyleSheet("border: none");
   deleteButton->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
   this->layout->addWidget(deleteButton, 0, 0, Qt::AlignTop | Qt::AlignLeft);
-  QObject::connect(deleteButton, &QPushButton::clicked, this, [=]() -> void {
-    emit this->deleteCoursePlan(this->coursePlan);
-  });
+  QObject::connect(
+      deleteButton, &QPushButton::clicked, this,
+      [=, this]() -> void { emit this->deleteCoursePlan(this->coursePlan); });
 
   this->setLayout(this->layout);
 

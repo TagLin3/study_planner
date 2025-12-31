@@ -53,7 +53,7 @@ CoursePlanDialog::CoursePlanDialog(const Course& course) : period(PERIOD1) {
 
   QObject::connect(
       examOnlyCheckbox, &QCheckBox::checkStateChanged, periodDropDown,
-      [=]() -> void {
+      [=, this]() -> void {
         for (int i = 1; i <= 8; i++) {
           periodDropDown->removeItem(0);
           yearDropDown->removeItem(0);
@@ -94,7 +94,7 @@ CoursePlanDialog::CoursePlanDialog(const Course& course) : period(PERIOD1) {
   QPushButton* addCoursePlanButton = new QPushButton("Add");
   QObject::connect(addCoursePlanButton, &QPushButton::clicked, this,
                    &QDialog::accept);
-  QObject::connect(this, &QDialog::accepted, this, [=]() {
+  QObject::connect(this, &QDialog::accepted, this, [=, this]() {
     if (examOnlyCheckbox->isChecked()) {
       shared_ptr<CoursePlan> coursePlanToAdd = shared_ptr<ExamPlan>(
           new ExamPlan(course, lengthDropDown->currentData().toInt(),

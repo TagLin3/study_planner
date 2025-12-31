@@ -19,6 +19,7 @@ std::string periodToString(const Period& period) {
     case SUMMER2:
       return "Summer 2";
   }
+  return "";
 };
 
 void addPeriodsToDropDown(const std::vector<Period>& periods,

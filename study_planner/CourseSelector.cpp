@@ -29,7 +29,8 @@ void CourseSelector::updateCourseList() {
     CourseSelectCard *courseSelectCard = new CourseSelectCard(*i);
     this->courseList->addWidget(courseSelectCard);
     QObject::connect(
-        courseSelectCard, &CourseSelectCard::clicked, this, [=]() -> void {
+        courseSelectCard, &CourseSelectCard::clicked, this,
+        [=, this]() -> void {
           if (this->selectedCourseCard != nullptr) {
             this->selectedCourseCard->setProperty("selected", false);
             this->selectedCourseCard->style()->unpolish(selectedCourseCard);
@@ -102,13 +103,13 @@ CourseSelector::CourseSelector(const std::vector<Course> &courses,
 
   this->updateCourseList();
   connect(startPeriodFilterDropDown, &QComboBox::currentIndexChanged, this,
-          [=]() -> void {
+          [=, this]() -> void {
             this->startPeriodFilter =
                 startPeriodFilterDropDown->currentData().value<Period>();
             this->updateCourseList();
           });
   connect(examOnlyFilterCheckbox, &QCheckBox::checkStateChanged, this,
-          [=]() -> void {
+          [=, this]() -> void {
             if (examOnlyFilterCheckbox->isChecked()) {
               examPeriodFilterDropDownLabel->show();
               examPeriodFilterDropDown->show();
@@ -120,22 +121,22 @@ CourseSelector::CourseSelector(const std::vector<Course> &courses,
             this->updateCourseList();
           });
   connect(examPeriodFilterDropDown, &QComboBox::currentIndexChanged, this,
-          [=]() -> void {
+          [=, this]() -> void {
             this->examPeriodFilter =
                 examPeriodFilterDropDown->currentData().value<Period>();
             this->updateCourseList();
           });
-  connect(courseSearchButton, &QPushButton::clicked, this, [=]() -> void {
+  connect(courseSearchButton, &QPushButton::clicked, this, [=, this]() -> void {
     this->nameOrCodeOrTagsFilter =
         string(courseSearchLineEdit->text().toUtf8());
     this->updateCourseList();
   });
   connect(lengthFilterDropDown, &QComboBox::currentIndexChanged, this,
-          [=]() -> void {
+          [=, this]() -> void {
             this->lengthFilter = lengthFilterDropDown->currentData().toUInt();
             this->updateCourseList();
           });
-  connect(addCourseButton, &QPushButton::clicked, this, [=]() -> void {
+  connect(addCourseButton, &QPushButton::clicked, this, [=, this]() -> void {
     emit selectCourse(this->selectedCourseCard->getCourse());
   });
 
