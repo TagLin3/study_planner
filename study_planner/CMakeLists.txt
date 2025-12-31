@@ -4,9 +4,19 @@ set(nlohmann_json_DIR "C:\\cpp_json\\out\\build\\x64-Debug")
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(nlohmann_json 3.12.0 REQUIRED)
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
 qt_standard_project_setup()
 
-qt_add_executable(study_planner study_planner.cpp Course.cpp ParticipationPlan.cpp ExamPlan.cpp Period.cpp)
+file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
+file(GLOB_RECURSE HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.h)
+
+qt_add_executable(study_planner
+    ${SOURCES}
+    ${HEADERS}
+)
 
 target_link_libraries(study_planner PRIVATE Qt6::Widgets PRIVATE nlohmann_json::nlohmann_json)
 
