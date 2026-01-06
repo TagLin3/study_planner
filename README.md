@@ -2,6 +2,27 @@
 
 This is a Windows desktop application that I wrote for planning my studies at Aalto University. That is, planning what courses I will complete and when. This application was originally meant for private use solely by me (which explains most of the design decisions) but it grew to be a big enough project that I considered it worthwile to document it and upload it to GitHub. The application is written in C++ and utilizes QT Widgets for the UI, JSON files for file management using nlohmanns's JSON C++ library and CMake for building the project.
 
+## Running the appliction
+
+The application currently only supports Windows and has been tested on Windows 11 with an Intel processer only.
+
+### Installing the application directly
+
+There is a Windows .exe installer available in the releases section of the GitHub repository.
+
+### Building from source
+
+1. You need to have mingw_64-version of QT, nlohmann's C++ JSON library and CMake installed.
+	1. For QT go to https://www.qt.io/development/download-qt-installer-oss and in the installer make sure to select the mingw_64-version for installation.
+	2. For nlohmann's JSON library go to https://github.com/nlohmann/json and simply clone the repository to your machine.
+	3. For the CMake installer refer to https://cmake.org/download/
+2. In `CMakePresets.json` in the `"cacheVariables"`-section match `"Qt6_DIR"` and `"nlohmann_json_DIR"` to your installation paths of QT and nlohmann's JSON library.
+3. To build, run:
+	1. `cmake --preset x64-debug`
+	2. `cmake --build out/build/x64-debug`
+	3. `cmake --install out/build/x64-debug` (currently the build version isn't working but the installed version is)
+3. You now have a working .exe file in `out/install/x64-debug/bin/study_planner.exe`.
+
 ## The UI
 
 ### Timeline
